@@ -33,7 +33,6 @@ lazy val aggregatedProjects: Seq[ProjectReference] = List[ProjectReference](
   actor, actorTests,
   agent,
   benchJmh,
-  camel,
   cluster, clusterMetrics, clusterSharding, clusterTools,
   contrib,
   distributedData,
@@ -132,12 +131,6 @@ lazy val benchJmhTyped = akkaModule("akka-bench-jmh-typed")
   .disablePlugins(MimaPlugin, WhiteSourcePlugin, ValidatePullRequest, CopyrightHeaderInPr)
 
 
-lazy val camel = akkaModule("akka-camel")
-  .dependsOn(actor, slf4j, testkit % "test->test")
-  .settings(Dependencies.camel)
-  .settings(AutomaticModuleName.settings("akka.camel"))
-  .settings(OSGi.camel)
-
 lazy val cluster = akkaModule("akka-cluster")
   .dependsOn(remote, remoteTests % "test->test", testkit % "test->test")
   .settings(Dependencies.cluster)
@@ -228,7 +221,6 @@ lazy val distributedData = akkaModule("akka-distributed-data")
 lazy val docs = akkaModule("akka-docs")
   .dependsOn(
     actor, cluster, clusterMetrics, slf4j, agent, osgi, persistenceTck, persistenceQuery, distributedData, stream, actorTyped,
-    camel % "compile->compile;test->test",
     clusterTools % "compile->compile;test->test",
     clusterSharding % "compile->compile;test->test",
     testkit % "compile->compile;test->test",
